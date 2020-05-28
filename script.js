@@ -119,16 +119,15 @@ class Spawn {
         return [top, left];
     }
     place(type, node) {
-        //spawn.list[this.holderId] = this;
         const div = document.createElement('div');
         div.classList.add('ui-widget-content', 'spawn-container');
         div.id = this.holderId;
         div.style.cssText = `top: ${this.position[0] * vh() * (2/scatter.windowRatio)}px; left:${this.position[1] * vw()}px; z-index: ${amount + 7}`
-        document.getElementById('wrapper').appendChild(div);
-        //spawn.nodeList[this.holderId] = div;
         let dom;
+        document.getElementById('wrapper').appendChild(div);    
         if (type == 'images') {
             const img = document.createElement('img')
+            img.setAttribute('data-html2canvas-ignore', 'true')
             img.setAttribute('src', this.src);
             dom = img;
         } else {
@@ -150,11 +149,10 @@ class Spawn {
         for (let i = 0; i < 20; i++) {
             const dom = document.getElementById(`spawn-${i}`);
             dom.remove();
-            //spawn.nodeList[`spawn-${i}`] = undefined;
-            //spawn.list[`spawn-${i}`] = undefined;
         }
     }
 }
+const imageWrapper = document.getElementById('image-wrapper')
 const spawn = new Spawn('spawn');
 class Screenshot extends Spawn {
     constructor(type) {
@@ -167,7 +165,8 @@ class Screenshot extends Spawn {
             onrendered: canvas => {
                 this.place.call(this, 'screenshot', canvas);
                 canvas.toDataURL();
-            }
+            },
+            /*ignoreElements: imageWrapper => false*/
         })
     }
 }
@@ -188,7 +187,6 @@ class Images extends Spawn {
 spawn.getTime();
 function draggableSet(node) {
     $(node).draggable({
-       // cursor: 'move',
         start: () => {
             dragging = true;
         },

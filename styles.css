@@ -1,6 +1,3 @@
-/*html {
-	cursor: url(cursor/move.svg), auto;
-}*/
 body {
 	overflow: hidden;
 	height: 100%;
@@ -57,11 +54,11 @@ span,
 	width: 75vw;
 	height: 100%;
 	margin: 0 12.5vw;
-	/*border: 0.078vw solid black;*/
+	z-index: 1;
 }
 
 #wrapper div {
-	cursor: url('Cursor/Drag.svg'), move;
+	cursor: move;
 }
 
 .main {
