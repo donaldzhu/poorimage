@@ -354,7 +354,7 @@ window.addEventListener('resize', () => {
     sectionMaxHeight();
 })
 
-const touchTO
+let touchTO;
 function touchDrag() {
     $('#wrapper div').draggable('enable');
     alert('congrats')
