@@ -135,7 +135,7 @@
     clearTimeout(touchTO);
     // If the touch interaction did not move, it should trigger a click
     if (!this._touchMoved) {
-
+      event.preventDefault();
       // Simulate the click event
       simulateMouseEvent(event, 'click');
     }
