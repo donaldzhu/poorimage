@@ -463,3 +463,7 @@ spawn.getTime();
 intro.assign();
 citation.assign();
 citationEvt.initialize();
+function display() {
+    document.body.innerHTML += `<h1>${100 * vw()} x ${100 * vh()}</h1>`
+}
+display();
