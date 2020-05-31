@@ -2,8 +2,87 @@ let amount = 0,
     dragging = false,
     consoleLogging = false;
 const vh = () => window.innerHeight / 100,
-    vw = () => window.innerWidth / 100;
-draggableSet('#wrapper div');
+    vw = () => window.innerWidth / 100,
+    main = Array.from(document.getElementsByClassName('main'));
+wrapper = document.querySelector('#wrapper')
+
+class Media {
+    constructor() {
+        this.windowRatio = () => vw() / vh();
+        this.threshold = () => (vw() * 100 > 478) ? 'above' : 'below';
+        this.validate = () => (this.windowRatio() < 1 || this.threshold() == 'below') ? true : false;
+        this.positionLog = {
+            top: [0, 0, 0, 0, 0, 0],
+            left: [0, 0, 0, 0, 0, 0]
+        };
+        this.mobile = {
+            cur: null,
+            next: this.validate()
+        }
+    }
+    sectionMaxHeight() {
+        iterate((s) => {
+            const t = s.firstElementChild.getBoundingClientRect().top;
+            const b = s.lastElementChild.getBoundingClientRect().bottom;
+            const mh = b - t;
+            s.style.maxHeight = this.validate() ? 'none' : `${mh}px`;
+        })
+    }
+    report() {
+        if (this.validate()) {
+            if (!this.mobile.cur && this.mobile.next) {
+                iterate((s, i) => {
+                    this.positionLog.top[i] = s.style.top;
+                    this.positionLog.left[i] = s.style.left;
+                })
+                iterate((s) => {
+                    s.style.top = 'auto';
+                    s.style.left = 'auto'
+                })
+            }
+            $('#wrapper div').draggable('disable');
+            clearInterval(spawn.interval);
+        } else {
+            if (this.mobile.cur && !this.mobile.next) {
+                clearInterval(spawn.interval);
+                spawn.getTime();
+                if (!scatter.runned) {
+                    scatter.onload()
+                } else {
+                    iterate((s, i) => {
+                        s.style.top = this.positionLog.top[i];
+                        s.style.left = this.positionLog.left[i];
+                    })
+                }
+                $('#wrapper div').draggable('enable');
+            }
+        }
+        this.sectionMaxHeight();
+        this.popUp();
+    }
+    popUp(func) {
+        if (this.validate()) {
+            if (func == 'initial') {
+                document.getElementById('pop-up').style.display = 'flex';
+                document.getElementById('shade').style.display = 'block';
+                document.getElementById('confirm').addEventListener('click', () => {
+                    this.popUp('confirm')
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key == 'Enter') {
+                        this.popUp('confirm')
+                    }
+                });
+            } else if (func == 'confirm') {
+                document.getElementById('pop-up').style.display = 'none';
+                document.getElementById('shade').style.display = 'none';
+            }
+        } else {
+            document.getElementById('pop-up').style.display = 'none';
+            document.getElementById('shade').style.display = 'none';
+        }
+    }
+}
 
 class Scatter {
     constructor() {
@@ -46,20 +125,19 @@ class Scatter {
             }
         };
         this.version = Math.round(Math.random() * (9 - 1) + 1);
-        this.windowRatio = vw() / vh();
     }
     onload() {
-        const main = Array.from(document.getElementsByClassName('main'));
-        const comp = this.composition[`version_${this.version}`];
-        for (let i = 0; i < main.length; i++) {
-            const section = main[i];
-            section.style.top = `${comp.top[i] * vh() * (2/this.windowRatio)}px`;
-            section.style.left = `${comp.left[i] * vw()}px`;
+        if (media.validate()) {
+            return
         }
+        const comp = this.composition[`version_${this.version}`];
+        iterate((s, i) => {
+            s.style.top = `${comp.top[i] * vh() * (2/media.windowRatio())}px`;
+            s.style.left = `${comp.left[i] * vw()}px`;
+        })
+        this.runned = true;
     }
 }
-const scatter = new Scatter();
-scatter.onload();
 
 class Spawn {
     constructor(type) {
@@ -71,13 +149,14 @@ class Spawn {
         this.id = `${type}-${amount}`
         this.holderId = `spawn-${amount}`;
         this.position = this.setPosition();
-        //this.list = {};
-        //this.nodeList = {};
     }
     getTime() {
+        if (media.validate()) {
+            return
+        }
         this.interval = setTimeout(() => {
             this.run();
-            this.getTime()
+            this.getTime();
         }, this.time);
         this.time = Math.round(Math.random() * (this.maxTime - this.minTime) + this.minTime);
         //console.log(`%c The current interval is: ${this.time / 1000} seconds`, 'color: gray; font-style: italic')
@@ -118,16 +197,19 @@ class Spawn {
         const left = Math.floor(Math.random() * (match('left')[0] - match('left')[1]) + match('left')[1]);
         return [top, left];
     }
-    place(type, node) {
+    hold(type, node) {
         const div = document.createElement('div');
         div.classList.add('ui-widget-content', 'spawn-container');
         div.id = this.holderId;
-        div.style.cssText = `top: ${this.position[0] * vh() * (2/scatter.windowRatio)}px; left:${this.position[1] * vw()}px; z-index: ${amount + 7}`
+        div.style.cssText = `top: ${this.position[0] * vh() * (2/media.windowRatio())}px; left:${this.position[1] * vw()}px; z-index: ${amount + 7}`
+        document.getElementById('wrapper').appendChild(div);
+        this.place(type, node, div)
+    }
+    place(type, node, div) {
         let dom;
-        document.getElementById('wrapper').appendChild(div);    
         if (type == 'images') {
-            const img = document.createElement('img')
-            img.setAttribute('data-html2canvas-ignore', 'true')
+            const img = document.createElement('img');
+            img.setAttribute('data-html2canvas-ignore', 'true');
             img.setAttribute('src', this.src);
             dom = img;
         } else {
@@ -142,7 +224,7 @@ class Spawn {
             console.log(`Imported (${amount}): %c${type == 'images' ? type.slice(0, -1) : type}`,
                 `color: ${type == 'images' ? '#307cbf' : '#cc2929'}`)
         }
-        draggableSet('#wrapper div');
+        draggableSet();
     }
     clear() {
         amount -= 20;
@@ -153,20 +235,18 @@ class Spawn {
     }
 }
 const imageWrapper = document.getElementById('image-wrapper')
-const spawn = new Spawn('spawn');
 class Screenshot extends Spawn {
     constructor(type) {
         super(type)
         this.width = `${Math.floor(Math.random() * (40 - 7.5) + 7.5) * vw()}px`;
-        this.height = `${Math.floor(Math.random() * (40 - 7.5) + 7.5) * vw()}px`;
+        this.height = `${Math.floor(Math.random() * (40 - 7.5) + 7.5) * vw() * (2.5/media.windowRatio())}px`;
     }
     assign() {
-        html2canvas(document.querySelector('#wrapper'), {
+        html2canvas(wrapper, {
             onrendered: canvas => {
-                this.place.call(this, 'screenshot', canvas);
+                this.hold.call(this, 'screenshot', canvas);
                 canvas.toDataURL();
             },
-            /*ignoreElements: imageWrapper => false*/
         })
     }
 }
@@ -177,23 +257,23 @@ class Images extends Spawn {
         super(type)
         this.imgNum = Math.round(Math.random() * (totalNumOfImg - 1) + 1);
         this.src = `1/${this.imgNum}.jpg`
-        this.width = `${(Math.random() * (1.15 - 0.75) + 0.75) * 20 * vw()}px`;
+        this.width = `${(Math.random() * (1.25 - 0.9) + 0.9) * 20 * vw()}px`;
     }
     assign() {
-        this.place.call(this, 'images', null);
+        this.hold.call(this, 'images', null);
     }
 }
 
-spawn.getTime();
-function draggableSet(node) {
-    $(node).draggable({
+
+function draggableSet() {
+    $('#wrapper div').draggable({
         start: () => {
             dragging = true;
         },
         stop: () => {
             dragging = false;
         },
-        stack: node,
+        stack: '#wrapper div',
     });
 };
 
@@ -202,27 +282,40 @@ class SideAnimation {
         this.elem = document.getElementById(elem);
         this.container = this.elem.parentElement;
         this.height = () => {
-            //parseFloat(getComputedStyle(this.elem).height)
             const top = this.elem.firstElementChild.getBoundingClientRect().top;
             const bottom = this.elem.lastElementChild.getBoundingClientRect().bottom;
             return bottom - top;
         }
         this.top = () => 0 - this.height();
         this.bottom = () => 100 * vh();
+        this.width = () => {
+            const left = this.elem.firstElementChild.getBoundingClientRect().left;
+            const right = this.elem.lastElementChild.getBoundingClientRect().right;
+            return right - left;
+        }
+        this.left = () => 0 - this.width();
+        this.right = () => 100 * vw();
+        this.innerHTML = this.elem.innerHTML;
     }
-    setContainer() {
+    assign() {
+        media.validate() ? this.mobileContainer() : this.desktopContainer();
+    }
+    desktopContainer() {
+        this.elem.innerHTML = this.innerHTML;
         this.container.style.height = `${this.bottom() - this.top()}px`;
         this.container.style.top = `${this.top()}px`;
+        this.container.style.width = '';
+        this.container.style.left = '';
+    }
+    mobileContainer() {
+        this.elem.innerHTML = `<p>${this.elem.innerHTML.replace(/<p[^>]*>/g, '').replace(/<\/p>/g, '')}</p>`
+        this.container.style.width = `${this.right() - this.left()}px`;
+        this.container.style.left = `${this.left()}px`;
+        this.container.style.height = '';
+        this.container.style.top = '';
     }
 }
-const intro = new SideAnimation('intro');
-const citation = new SideAnimation('citation-wrapper');
-intro.setContainer();
-citation.setContainer();
-window.addEventListener('resize', () => {
-    intro.setContainer();
-    citation.setContainer();
-});
+
 
 class Citation {
     constructor() {
@@ -288,8 +381,6 @@ class Citation {
         }
     }
 }
-const citationEvt = new Citation();
-citationEvt.initialize();
 
 class Control {
     constructor() {
@@ -298,26 +389,25 @@ class Control {
             resurrect: 'e',
             next: 'n',
             clear: 'c',
-            toggle_animation: 'p'
         }
     }
     terminate() {
-        control.log('Terminated');
+        this.log('Terminated');
         clearInterval(spawn.interval);
         alert('Terminated');
     }
     resurrect() {
-        control.log('Resurrected')
+        this.log('Resurrected')
         spawn.getTime();
         alert('Resurrected');
 
     }
     next() {
-        control.log('Next');
+        this.log('Next');
         spawn.run();
     }
     clear() {
-        control.log('Cleared.');
+        this.log('Cleared.');
         const arr = document.getElementsByClassName('spawn-container');
         for (let i = 0, n = arr.length; i < n; i++) {
             arr[0].remove();
@@ -327,35 +417,49 @@ class Control {
     log(message) {
         console.log(`%c${message}`, 'font-style: italic; color: gray; padding-left: 1.5em;')
     }
+    static enable() {
+        control = new Control();
+    }
 }
-const control = new Control();
+
+let control;
 document.addEventListener('keydown', e => {
-    for (let i = 0; i < Object.keys(control.evt).length; i++) {
-        const listener = control.evt[Object.keys(control.evt)[i]];
-        if (listener == e.key) {
-            control[Object.keys(control.evt)[i]]();
+    if (control) {
+        for (let i = 0; i < Object.keys(control.evt).length; i++) {
+            const listener = control.evt[Object.keys(control.evt)[i]];
+            if (listener == e.key) {
+                control[Object.keys(control.evt)[i]]();
+            }
         }
-
     }
 })
 
-function sectionMaxHeight() {
-    const main = document.getElementsByClassName('main');
+function iterate(func) {
     for (let i = 0; i < main.length; i++) {
-        const section = main[i];
-        const t = section.firstElementChild.getBoundingClientRect().top;
-        const b = section.lastElementChild.getBoundingClientRect().bottom;
-        const mh = b - t;
-        section.style.maxHeight = `${mh}px`;
+        const s = main[i];
+        func(s, i);
     }
 }
-sectionMaxHeight();
-window.addEventListener('resize', () => {
-    sectionMaxHeight();
-})
 
-let touchTO;
-function touchDrag() {
-    $('#wrapper div').draggable('enable');
-    alert('congrats')
-}
+draggableSet();
+const media = new Media();
+const scatter = new Scatter();
+const spawn = new Spawn('spawn');
+const intro = new SideAnimation('intro');
+const citation = new SideAnimation('citation-wrapper');
+const citationEvt = new Citation();
+media.report();
+media.sectionMaxHeight();
+media.popUp('initial')
+window.addEventListener('resize', () => {
+    media.mobile.cur = media.mobile.next;
+    media.mobile.next = media.validate();
+    media.report();
+    intro.assign();
+    citation.assign();
+})
+scatter.onload();
+spawn.getTime();
+intro.assign();
+citation.assign();
+citationEvt.initialize();

@@ -63,6 +63,8 @@
     event.target.dispatchEvent(simulatedEvent);
   }
 
+  let touchedP;
+
   /**
    * Handle the jQuery UI widget's touchstart events
    * @param {Object} event The widget element's touchstart event
@@ -82,6 +84,11 @@
     // Track movement to determine if interaction was a click
     self._touchMoved = false;
 
+    if (event.target.tagName == 'P') {
+      touchedP = true;
+      $('#wrapper div').draggable('disable');
+    }
+
     // Simulate the mouseover event
     simulateMouseEvent(event, 'mouseover');
 
@@ -91,10 +98,6 @@
     // Simulate the mousedown event
     simulateMouseEvent(event, 'mousedown');
 
-    $('#wrapper div').draggable('disable');
-    touchTO = setTimeout(() => {
-      touchDrag();
-    }, 1000)
   };
 
   /**
@@ -131,8 +134,10 @@
 
     // Simulate the mouseout event
     simulateMouseEvent(event, 'mouseout');
+    if (touchedP == true && media.incompatible == false) {
+      $('#wrapper div').draggable('enable')
+    }
 
-    clearTimeout(touchTO);
     // If the touch interaction did not move, it should trigger a click
     if (!this._touchMoved) {
       event.preventDefault();
