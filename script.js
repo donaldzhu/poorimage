@@ -253,7 +253,7 @@ class Images extends Spawn {
     constructor(type) {
         super(type)
         this.imgNum = Math.round(Math.random() * (totalNumOfImg - 1) + 1);
-        this.src = `1/${this.imgNum}.jpg`
+        this.src = `images/${this.imgNum}.jpg`
         this.width = `${(Math.random() * (1.25 - 0.9) + 0.9) * 20 * vw()}px`;
     }
     assign() {

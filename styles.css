@@ -14,8 +14,8 @@ p {
 	font-size: 1vw;
 	line-height: 1.25em;
 	clear: both;
-	margin: 0;
 	text-align: justify;
+	margin: 0;
 	hyphens: auto;
 }
 
@@ -82,13 +82,9 @@ span,
 
 #title {
 	z-index: 9999;
-	width: 75vw;
-	user-select: none;
-	pointer-events: none;
 }
 
 #wrapper {
-	width: 75vw;
 	height: 100%;
 	margin: 0 12.5vw;
 	z-index: 1;
@@ -96,6 +92,22 @@ span,
 
 #wrapper div {
 	cursor: -webkit-image-set(url(cursor/move.svg) 5x) 5 5, move;
+}
+
+#title,
+#wrapper {
+	width: 75vw;
+}
+
+#title,
+.side-wrapper {
+	pointer-events: none;
+}
+
+#title,
+.spawn,
+.side-wrapper {
+	user-select: none;
 }
 
 .main {
@@ -109,14 +121,11 @@ span,
 
 .spawn {
 	overflow: hidden;
-	user-select: none;
 }
 
 .side-wrapper {
 	width: 24.5vw;
 	z-index: 999;
-	user-select: none;
-	pointer-events: none;
 }
 
 .side {
