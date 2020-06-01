@@ -154,8 +154,20 @@ span,
 	}
 }
 
-#bottom {
+.info {
 	z-index: 0;
+}
+
+.info p {
+	font-size: calc(0.35vw + 6px);
+	color: #ffcc00;
+}
+
+.info a:visited {
+	color: #ffcc00;
+}
+
+#bottom {
 	bottom: 0.5vw;
 	right: 0.5vw;
 }
@@ -177,15 +189,6 @@ img {
 
 .main p {
 	padding-bottom: 1vw;
-}
-
-#bottom p {
-	font-size: calc(0.35vw + 6px);
-	color: #ffcc00;
-}
-
-#bottom a:visited {
-	color: #ffcc00;
 }
 
 .side a:visited {
@@ -296,7 +299,7 @@ img {
 	#intro p,
 	#citation-wrapper p {
 		padding-top: 1vh;
-		height: 7.5vh;
+		height: 5vh;
 		display: inline-block;
 		margin: 0;
 		white-space: nowrap;
@@ -315,7 +318,7 @@ img {
 	#pop-up {
 		width: 75vw;
 		height: 40vh;
-		left: 5vw;
+		left: 7.5vw;
 		top: 20vh;
 		z-index: 999999;
 		border: 5px solid red;
