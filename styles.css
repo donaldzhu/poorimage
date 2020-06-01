@@ -5,7 +5,7 @@ html {
 body {
 	overflow: hidden;
 	height: 100%;
-	margin: 0px;
+	margin: 0;
 	font-family: "GT-Pressura", sans-serif;
 	color: #EF0000;
 }
@@ -140,13 +140,13 @@ span,
 	}
 
 	to {
-		top: 0%;
+		top: 0;
 	}
 }
 
 @keyframes slide-down {
 	from {
-		top: 0%;
+		top: 0;
 	}
 
 	to {
@@ -218,6 +218,7 @@ img {
 		font-size: 20px;
 		line-height: 1.5em;
 		hyphens: none;
+		text-align: left;
 	}
 
 	#wrapper,
@@ -244,7 +245,7 @@ img {
 	}
 
 	#title h1 {
-		-webkit-text-stroke-width: 0.2vw;
+		-webkit-text-stroke-width: 0.1vw;
 		font-size: calc(2.025vw + 50px);
 	}
 
@@ -304,7 +305,7 @@ img {
 		}
 
 		to {
-			left: 0%;
+			left: 0;
 		}
 	}
 
@@ -352,6 +353,7 @@ img {
 		font-style: italic;
 		text-decoration: underline;
 		cursor: -webkit-image-set(url(cursor/pointer.svg) 5x) 5 5, pointer;
+		user-select: none;
 	}
 
 
