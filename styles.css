@@ -207,6 +207,7 @@ img {
 (orientation: portrait) {
 	body {
 		overflow-y: scroll;
+		letter-spacing: -0.02em;
 	}
 
 	h1 {
