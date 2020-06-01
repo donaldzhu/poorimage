@@ -419,6 +419,8 @@ class Control {
     }
     static enable() {
         control = new Control();
+        Control.enable = function(){};
+        
     }
 }
 
