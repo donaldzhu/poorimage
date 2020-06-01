@@ -68,6 +68,10 @@ class Media {
                 document.getElementById('confirm').addEventListener('click', () => {
                     this.popUp('confirm')
                 });
+                document.getElementById('confirm').addEventListener('touchstart', () => {
+                    console.log('touched')
+                    this.popUp('confirm')
+                });
                 document.addEventListener('keydown', (e) => {
                     if (e.key == 'Enter') {
                         this.popUp('confirm')
@@ -463,3 +467,7 @@ spawn.getTime();
 intro.assign();
 citation.assign();
 citationEvt.initialize();
+function display() {
+    document.body.innerHTML += `<h1>${100 * vw()} x ${100 * vh()}</h1>`
+}
+display();
