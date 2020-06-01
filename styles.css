@@ -1,7 +1,4 @@
 body {
-	overflow: hidden;
-	height: 100%;
-	margin: 0;
 	font-family: "GT-Pressura", sans-serif;
 	color: #EF0000;
 }
@@ -11,7 +8,6 @@ p {
 	line-height: 1.25em;
 	clear: both;
 	text-align: justify;
-	margin: 0;
 	hyphens: auto;
 }
 
@@ -20,7 +16,22 @@ h1 {
 	font-weight: 700;
 	line-height: 1.125em;
 	text-align: left;
+}
+
+body,
+p,
+h1 {
 	margin: 0;
+}
+
+body,
+#wrapper {
+	height: 100%;
+}
+
+body,
+.spawn {
+	overflow: hidden;
 }
 
 span {
@@ -36,12 +47,10 @@ a:hover {
 	background-color: #EF0000;
 }
 
-
-
 #header {
-	z-index: 99999;
 	top: 4vw;
 	left: 4vw;
+	z-index: 99999;
 }
 
 #title {
@@ -59,7 +68,6 @@ a:hover {
 }
 
 #wrapper {
-	height: 100%;
 	margin: 0 12.5vw;
 	z-index: 1;
 }
@@ -84,10 +92,6 @@ a:hover {
 
 #deck p {
 	font-size: 1em;
-}
-
-.spawn {
-	overflow: hidden;
 }
 
 .side-wrapper {
