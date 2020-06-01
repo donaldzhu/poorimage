@@ -33,7 +33,8 @@ p::selection,
 h1::selection,
 sup::selection,
 span::selection,
-i::selection {
+i::selection,
+a::selection {
 	color: white;
 	background-color: #EF0000;
 }
@@ -42,7 +43,8 @@ p::-moz-selection,
 h1::-moz-selection,
 span::-moz-selection,
 sup::-moz-selection,
-i::-moz-selection {
+i::-moz-selection,
+a::-moz-selection {
 	color: white;
 	background-color: #EF0000;
 }
@@ -60,18 +62,22 @@ span,
 	cursor: -webkit-image-set(url(cursor/pointer.svg) 5x) 5 5, pointer;
 }
 
-#title,
 #wrapper,
-.info div,
+#bottom,
+.header,
 .ui-widget-content,
 .side-wrapper {
 	position: fixed;
 }
 
-#title {
-	z-index: 9999;
+.header {
+	z-index: 99999;
 	top: 4vw;
 	left: 4vw;
+}
+
+#title {
+	z-index: 9999;
 	width: 75vw;
 	user-select: none;
 	pointer-events: none;
@@ -157,6 +163,11 @@ span,
 .deck {
 	top: 0.5vw;
 	left: 0.5vw;
+	z-index: 99999;
+}
+
+.deck p {
+	font-size: 1em;
 }
 
 #bottom {
@@ -165,12 +176,17 @@ span,
 	right: 0.5vw;
 }
 
+.deck p,
 #bottom p {
-	font-size: calc(0.35vw + 6px);
 	color: #ffcc00;
 }
 
-#info a:visited {
+#bottom p {
+	font-size: calc(0.35vw + 6px);
+}
+
+.deck a:visited,
+#bottom a:visited {
 	color: #ffcc00;
 }
 
