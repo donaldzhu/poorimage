@@ -207,12 +207,13 @@ img {
 (orientation: portrait) {
 	body {
 		overflow-y: scroll;
-		letter-spacing: -0.2em;
+		letter-spacing: -0.1em;
 	}
 
 	h1 {
 		font-size: 10vw;
 		padding-bottom: 0.5em;
+		letter-spacing: -0.5em;
 	}
 
 	p {
