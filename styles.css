@@ -68,13 +68,13 @@ span,
 
 #wrapper,
 #bottom,
-.header,
+#header,
 .ui-widget-content,
 .side-wrapper {
 	position: fixed;
 }
 
-.header {
+#header {
 	z-index: 99999;
 	top: 4vw;
 	left: 4vw;
@@ -164,13 +164,13 @@ span,
 	}
 }
 
-.deck {
+#deck {
 	position: relative;
 	top: 0.5vw;
 	z-index: 99999;
 }
 
-.deck p {
+#deck p {
 	font-size: 1em;
 }
 
@@ -180,7 +180,7 @@ span,
 	right: 0.5vw;
 }
 
-.deck p,
+#deck p,
 #bottom p {
 	color: #ffcc00;
 }
@@ -189,7 +189,7 @@ span,
 	font-size: calc(0.35vw + 6px);
 }
 
-.deck a:visited,
+#deck a:visited,
 #bottom a:visited {
 	color: #ffcc00;
 }
@@ -272,12 +272,12 @@ img {
 		left: 10vw;
 	}
 
-	.deck {
+	#deck {
 		position: fixed;
 		top: 0.5vw;
 	}
 
-	.deck a {
+	#deck a {
 		color: #ffcc00;
 	}
 
