@@ -245,7 +245,6 @@ a::-moz-selection {
 @media (max-width: 478px),
 (orientation: portrait) {
 	body {
-		overflow-x: hidden;
 		overflow-y: scroll;
 		letter-spacing: -0.01em;
 	}
@@ -265,19 +264,18 @@ a::-moz-selection {
 
 	#header {
 		left: 0;
-		top: 10vh;
+		top: -35vh;
 	}
 
 	#title {
-		top: 2.5vh;
+		top: 5vw;
 		width: 100vw;
-		height: 25vh;
 	}
 
 	#title h1 {
 		line-height: 1.5em;
 		-webkit-text-stroke-width: 0.05vw;
-		font-size: calc(3vw + 50px);
+		font-size: calc(3vw + 55px);
 		white-space: nowrap;
 	}
 
@@ -291,7 +289,7 @@ a::-moz-selection {
 	}
 
 	#wrapper {
-		margin: 35vh 0 0;
+		margin: 45vh 0 0;
 		flex-direction: column;
 	}
 
@@ -315,20 +313,19 @@ a::-moz-selection {
 	}
 
 	#deck {
-		padding-left: 10vw;
 		height: 3vh;
-		top: 27.5vh;
+		top: 0;
 	}
 
 	#bottom {
 		height: 2vh;
 		bottom: 0;
-		left: 0;
-		padding-left: 2vw;
 	}
 
 	#deck,
 	#bottom {
+		left: 0;
+		padding-left: 2vw;
 		align-items: center;
 		padding-bottom: 0.5vh;
 	}
@@ -338,7 +335,7 @@ a::-moz-selection {
 	}
 
 	#intro-amn-wrapper {
-		top: 2vh;
+		top: 4vh;
 	}
 
 	#citation-amn-wrapper {
@@ -375,6 +372,7 @@ a::-moz-selection {
 		border: 5px solid blue;
 	}
 
+	#deck,
 	#bottom,
 	#intro-amn-wrapper,
 	#citation-amn-wrapper,
@@ -399,7 +397,6 @@ a::-moz-selection {
 	}
 
 	#header,
-	#deck,
 	#wrapper,
 	.main,
 	.ui-widget-content {
@@ -412,7 +409,8 @@ a::-moz-selection {
 	}
 
 	#pop-up,
-	#shade {
+	#shade,
+	#deck {
 		position: fixed;
 	}
 
