@@ -207,7 +207,7 @@ img {
 (orientation: portrait) {
 	body {
 		overflow-y: scroll;
-		letter-spacing: -0.1em;
+		letter-spacing: -0.05em;
 	}
 
 	h1 {
@@ -247,7 +247,7 @@ img {
 	}
 
 	#title h1 {
-		-webkit-text-stroke-width: 0.1vw;
+		-webkit-text-stroke-width: 0.05vw;
 		font-size: calc(2.025vw + 50px);
 	}
 
