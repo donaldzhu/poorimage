@@ -441,6 +441,12 @@ function iterate(func) {
     }
 }
 
+document.addEventListener('keydown', e => {
+    if (e.metaKey && e.key == 'e') {
+        Control.enable();
+    }
+})
+
 draggableSet();
 const media = new Media();
 const scatter = new Scatter();
