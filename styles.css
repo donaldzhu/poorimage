@@ -316,7 +316,7 @@ img {
 	#pop-up {
 		width: 75vw;
 		height: 40vh;
-		left: 12.5vw;
+		left: 5vw;
 		top: 20vh;
 		z-index: 999999;
 		border: 5px solid red;
