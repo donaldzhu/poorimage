@@ -296,8 +296,7 @@ img {
 	#intro p,
 	#citation-wrapper p {
 		padding-top: 1vh;
-		background-color: green;
-		height: 5vh;
+		height: 7.5vh;
 		display: inline-block;
 		margin: 0;
 		white-space: nowrap;
