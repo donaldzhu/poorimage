@@ -211,7 +211,8 @@ span,
 
 #title,
 .spawn,
-.side-wrapper {
+.side-wrapper,
+#confirm {
 	user-select: none;
 }
 
@@ -256,14 +257,11 @@ a::-moz-selection {
 	p {
 		font-size: 20px;
 		line-height: 1.5em;
-		hyphens: none;
 		text-align: left;
+		hyphens: none;
 	}
 
-	#wrapper,
-	.ui-widget-content {
-		position: relative;
-	}
+
 
 	#wrapper {
 		width: 100vw;
@@ -321,11 +319,7 @@ a::-moz-selection {
 	#section-6 {
 		border: none;
 	}
-
-	.spawn {
-		display: none;
-	}
-
+	
 	#intro-amn-wrapper {
 		top: 3.5vh;
 	}
@@ -338,6 +332,12 @@ a::-moz-selection {
 	#citation-amn-wrapper {
 		border: 5px solid blue;
 		background-color: white;
+	}
+
+	#intro-amn-wrapper,
+	#citation-amn-wrapper,
+	#intro p,
+	#citation-wrapper p {
 		height: 5vh;
 	}
 
@@ -354,7 +354,6 @@ a::-moz-selection {
 	#intro p,
 	#citation-wrapper p {
 		padding-top: 0.5vh;
-		height: 5vh;
 		display: inline-block;
 		margin: 0;
 		white-space: nowrap;
@@ -370,6 +369,20 @@ a::-moz-selection {
 		}
 	}
 
+	#wrapper,
+	.ui-widget-content {
+		position: relative;
+	}
+
+	#pop-up,
+	#shade {
+		position: fixed;
+	}
+
+	.spawn {
+		display: none;
+	}
+
 	#pop-up {
 		width: 75vw;
 		height: 40vh;
@@ -383,6 +396,10 @@ a::-moz-selection {
 		justify-content: center;
 	}
 
+	#pop-up * {
+		text-align: center;
+	}
+
 	#shade {
 		top: 0;
 		left: 0;
@@ -392,17 +409,8 @@ a::-moz-selection {
 		background-color: rgba(20, 0, 0, 0.4);
 	}
 
-	#pop-up,
-	#shade {
-		position: fixed;
-	}
-
-	#pop-up * {
-		text-align: center;
-	}
-
 	#message {
-		padding-top: 0vw;
+		padding-top: 0;
 		padding-bottom: 7.5vw;
 	}
 
@@ -414,12 +422,9 @@ a::-moz-selection {
 		font-style: italic;
 		text-decoration: underline;
 		cursor: -webkit-image-set(url(cursor/pointer.svg) 5x) 5 5, pointer;
-		user-select: none;
 	}
 
-
 }
-
 
 @font-face {
 	font-family: 'GT-Pressura';
