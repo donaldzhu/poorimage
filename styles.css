@@ -267,8 +267,17 @@ img {
 
 	#title {
 		position: absolute;
-		width: 65vw;
+		width: 75vw;
 		left: 10vw;
+	}
+
+	.deck {
+		position: fixed;
+		top: 0.5vw;
+	}
+
+	.deck a {
+		color: #ffcc00;
 	}
 
 	#title h1 {
