@@ -264,11 +264,11 @@ a::-moz-selection {
 
 	#header {
 		left: 0;
-		top: -35vh;
+		top: -30vh;
 	}
 
 	#title {
-		top: 5vw;
+		top: 15vw;
 		width: 100vw;
 	}
 
@@ -289,7 +289,7 @@ a::-moz-selection {
 	}
 
 	#wrapper {
-		margin: 45vh 0 0;
+		margin: 35vh 0 0;
 		flex-direction: column;
 	}
 
