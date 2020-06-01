@@ -339,6 +339,9 @@ class Citation {
         this.assign(intro.elem, intro.elem, 'hover', this.cssStyle.anm)
     }
     assign(attached, target, handler, ...handlerArgs) {
+        if (media.validate()) {
+            return
+        }
         let evt = this.handlers[handler];
         for (let i = 0; i < evt.length; i++) {
             this[handler](attached, target, evt[i], ...handlerArgs);
