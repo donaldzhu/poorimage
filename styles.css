@@ -313,9 +313,9 @@ img {
 	}
 
 	#pop-up {
-		width: 50vw;
+		width: 75vw;
 		height: 40vh;
-		left: 20vw;
+		left: 12.5vw;
 		top: 20vh;
 		z-index: 999999;
 		border: 5px solid red;
