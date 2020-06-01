@@ -273,16 +273,18 @@ img {
 
 	#deck {
 		position: fixed;
-		top: 0.5vh;
+		padding-top: 0.5vh;
 	}
 
 	#bottom {
 		bottom: 0.5vh;
+		z-index: 99999;
 	}
 
 	#deck,
 	#bottom {
 		height: 3vh;
+		width: 100vw;
 		background-color: white;
 	}
 
@@ -313,11 +315,11 @@ img {
 	}
 
 	#intro-amn-wrapper {
-		top: 3vh;
+		top: 3.5vh;
 	}
 
 	#citation-amn-wrapper {
-		bottom: 3vh;
+		bottom: 3.5vh;
 	}
 
 	#intro-amn-wrapper,
