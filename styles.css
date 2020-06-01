@@ -262,35 +262,11 @@ a::-moz-selection {
 		hyphens: none;
 	}
 
-	#wrapper {
-		width: 100vw;
-		margin: 20vh 0 0;
-		display: flex;
-		flex-direction: column;
-	}
-
 	#title {
 		top: 5vw;
-		position: absolute;
-		width: 75vw;
 		left: 5vw;
-	}
-
-	#deck {
-		position: fixed;
-		padding-top: 0.5vh;
-	}
-
-	#bottom {
-		bottom: 0;
-		z-index: 99999;
-	}
-
-	#deck,
-	#bottom {
-		height: 3vh;
-		width: 100vw;
-		background-color: white;
+		width: 75vw;
+		position: absolute;
 	}
 
 	#title h1 {
@@ -298,8 +274,19 @@ a::-moz-selection {
 		font-size: calc(2.025vw + 50px);
 	}
 
+	#wrapper {
+		margin: 20vh 0 0;
+		flex-direction: column;
+	}
+
+	#wrapper,
+	#deck,
+	#bottom,
+	#shade {
+		width: 100vw;
+	}
+
 	.main {
-		position: relative;
 		width: 80vw;
 		padding: 10vw;
 		height: auto;
@@ -311,18 +298,34 @@ a::-moz-selection {
 		border: none;
 	}
 
+	#deck {
+		top: 0;
+	}
+
+	#bottom {
+		bottom: 0;
+		z-index: 99999;
+	}
+
+	#deck,
+	#bottom {
+		left: 0;
+		padding-left: 2vw;
+		height: 3vh;
+		align-items: center;
+		padding-bottom: 0.5vh;
+	}
+
+	#bottom p {
+		font-size: 1.75vw;
+	}
+
 	#intro-amn-wrapper {
-		top: 3.5vh;
+		top: 4vh;
 	}
 
 	#citation-amn-wrapper {
-		bottom: 3.5vh;
-	}
-
-	#intro-amn-wrapper,
-	#citation-amn-wrapper {
-		border: 5px solid blue;
-		background-color: white;
+		bottom: 4vh;
 	}
 
 	#intro-amn-wrapper,
@@ -336,18 +339,36 @@ a::-moz-selection {
 		font-size: 1vw;
 	}
 
-	#intro,
-	#citation-wrapper {
-		display: flex;
-		animation: slide-left 280s linear infinite;
+	#deck,
+	#bottom,
+	#intro p,
+	#citation-wrapper p {
+		padding-top: 0.5vh;
 	}
 
 	#intro p,
 	#citation-wrapper p {
-		padding-top: 0.5vh;
 		display: inline-block;
 		margin: 0;
 		white-space: nowrap;
+	}
+
+	#intro-amn-wrapper,
+	#citation-amn-wrapper {
+		border: 5px solid blue;
+	}
+
+	#deck,
+	#bottom,
+	#intro-amn-wrapper,
+	#citation-amn-wrapper,
+	#pop-up {
+		background-color: white;
+	}
+
+	#intro,
+	#citation-wrapper {
+		animation: slide-left 280s linear infinite;
 	}
 
 	@keyframes slide-left {
@@ -361,13 +382,23 @@ a::-moz-selection {
 	}
 
 	#wrapper,
+	.main,
 	.ui-widget-content {
 		position: relative;
 	}
 
 	#pop-up,
-	#shade {
+	#shade,
+	#deck {
 		position: fixed;
+	}
+
+	#deck,
+	#wrapper,
+	#intro,
+	#citation-wrapper,
+	#bottom {
+		display: flex;
 	}
 
 	.spawn {
@@ -377,12 +408,11 @@ a::-moz-selection {
 	#pop-up {
 		width: 75vw;
 		height: 40vh;
-		left: 7.5vw;
 		top: 20vh;
+		left: 7.5vw;
+		padding: 5vw;
 		z-index: 999999;
 		border: 5px solid red;
-		background-color: white;
-		padding: 5vw;
 		flex-direction: column;
 		justify-content: center;
 	}
@@ -394,7 +424,6 @@ a::-moz-selection {
 	#shade {
 		top: 0;
 		left: 0;
-		width: 100vw;
 		height: 100vh;
 		z-index: 999998;
 		background-color: rgba(20, 0, 0, 0.4);
