@@ -129,9 +129,13 @@ span,
 }
 
 .side {
-	position: relative;
 	color: blue;
 	pointer-events: auto;
+}
+
+.side,
+#deck {
+	position: relative;
 }
 
 #citation-amn-wrapper {
@@ -174,9 +178,7 @@ span,
 }
 
 #deck {
-	position: relative;
 	top: 0.5vw;
-	z-index: 99999;
 }
 
 #deck p {
