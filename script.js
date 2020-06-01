@@ -31,34 +31,40 @@ class Media {
     report() {
         if (this.validate()) {
             if (!this.mobile.cur && this.mobile.next) {
-                iterate((s, i) => {
-                    this.positionLog.top[i] = s.style.top;
-                    this.positionLog.left[i] = s.style.left;
-                })
-                iterate((s) => {
-                    s.style.top = '';
-                    s.style.left = ''
-                })
+                this.desktop2mobile();
             }
             $('#wrapper div').draggable('disable');
             clearInterval(spawn.interval);
-        } else {
-            if (this.mobile.cur && !this.mobile.next) {
-                clearInterval(spawn.interval);
-                spawn.getTime();
-                if (!scatter.runned) {
-                    scatter.onload()
-                } else {
-                    iterate((s, i) => {
-                        s.style.top = this.positionLog.top[i];
-                        s.style.left = this.positionLog.left[i];
-                    })
-                }
-                $('#wrapper div').draggable('enable');
-            }
+        } else if (this.mobile.cur && !this.mobile.next) {
+            this.mobile2desktop()
         }
         this.sectionMaxHeight();
         this.popUp();
+    }
+
+    desktop2mobile() {
+        iterate((s, i) => {
+            this.positionLog.top[i] = s.style.top;
+            this.positionLog.left[i] = s.style.left;
+        })
+        iterate((s) => {
+            s.style.top = '';
+            s.style.left = ''
+        })
+    }
+
+    mobile2desktop() {
+        clearInterval(spawn.interval);
+        spawn.getTime();
+        if (!scatter.runned) {
+            scatter.onload()
+        } else {
+            iterate((s, i) => {
+                s.style.top = this.positionLog.top[i];
+                s.style.left = this.positionLog.left[i];
+            })
+        }
+        $('#wrapper div').draggable('enable');
     }
     popUp(func) {
         if (this.validate()) {
@@ -419,8 +425,8 @@ class Control {
     }
     static enable() {
         control = new Control();
-        Control.enable = function(){};
-        
+        Control.enable = function () {};
+
     }
 }
 
