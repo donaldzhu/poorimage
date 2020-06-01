@@ -269,7 +269,7 @@ img {
 		top: 5vw;
 		position: absolute;
 		width: 75vw;
-		left: 10vw;
+		left: 5vw;
 	}
 
 	#deck {
@@ -304,11 +304,11 @@ img {
 	}
 
 	#intro-amn-wrapper {
-		top: 5vh;
+		top: 3vh;
 	}
 
 	#citation-amn-wrapper {
-		bottom: 5vh;
+		bottom: 3vh;
 	}
 
 	#intro-amn-wrapper,
@@ -330,6 +330,7 @@ img {
 
 	#intro p,
 	#citation-wrapper p {
+		padding-top: 0.5vh;
 		height: 5vh;
 		display: inline-block;
 		margin: 0;
