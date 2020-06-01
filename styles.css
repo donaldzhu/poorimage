@@ -62,7 +62,7 @@ span,
 
 #title,
 #wrapper,
-#bottom,
+.info div,
 .ui-widget-content,
 .side-wrapper {
 	position: fixed;
@@ -154,22 +154,24 @@ span,
 	}
 }
 
-.info {
-	z-index: 0;
+.deck {
+	top: 0.5vw;
+	left: 0.5vw;
 }
 
-.info p {
+#bottom {
+	z-index: 0;
+	bottom: 0.5vw;
+	right: 0.5vw;
+}
+
+#bottom p {
 	font-size: calc(0.35vw + 6px);
 	color: #ffcc00;
 }
 
-.info a:visited {
+#info a:visited {
 	color: #ffcc00;
-}
-
-#bottom {
-	bottom: 0.5vw;
-	right: 0.5vw;
 }
 
 .main,
