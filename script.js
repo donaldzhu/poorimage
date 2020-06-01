@@ -20,14 +20,7 @@ class Media {
             next: this.validate()
         }
     }
-    sectionMaxHeight() {
-        iterate((s) => {
-            const t = s.firstElementChild.getBoundingClientRect().top;
-            const b = s.lastElementChild.getBoundingClientRect().bottom;
-            const mh = b - t;
-            s.style.maxHeight = this.validate() ? 'none' : `${mh}px`;
-        })
-    }
+
     report() {
         if (this.validate()) {
             if (!this.mobile.cur && this.mobile.next) {
@@ -40,6 +33,7 @@ class Media {
         }
         this.sectionMaxHeight();
         this.popUp();
+        this.titleBreak()
     }
 
     desktop2mobile() {
@@ -66,6 +60,7 @@ class Media {
         }
         $('#wrapper div').draggable('enable');
     }
+
     popUp(func) {
         if (this.validate()) {
             if (func == 'initial') {
@@ -84,6 +79,20 @@ class Media {
             document.getElementById('pop-up').style.display = 'none';
             document.getElementById('shade').style.display = 'none';
         }
+    }
+
+    sectionMaxHeight() {
+        iterate((s) => {
+            const t = s.firstElementChild.getBoundingClientRect().top;
+            const b = s.lastElementChild.getBoundingClientRect().bottom;
+            const mh = b - t;
+            s.style.maxHeight = this.validate() ? 'none' : `${mh}px`;
+        })
+    }
+
+    titleBreak() {
+        const title = document.getElementById('title');
+        title.innerHTML = '<h1>In Defense of <br> the Poor Image</h1>';
     }
 }
 
