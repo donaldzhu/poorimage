@@ -262,6 +262,10 @@ a::-moz-selection {
 		hyphens: none;
 	}
 
+	#header {
+		top: -40vh;
+	}
+
 	#title {
 		top: 5vw;
 		left: 5vw;
@@ -275,7 +279,7 @@ a::-moz-selection {
 	}
 
 	#wrapper {
-		margin: 20vh 0 0;
+		margin: 50vh 0 0;
 		flex-direction: column;
 	}
 
@@ -304,7 +308,6 @@ a::-moz-selection {
 
 	#bottom {
 		bottom: 0;
-		z-index: 99999;
 	}
 
 	#deck,
@@ -364,6 +367,7 @@ a::-moz-selection {
 	#citation-amn-wrapper,
 	#pop-up {
 		background-color: white;
+		z-index: 99999;
 	}
 
 	#intro,
@@ -381,6 +385,7 @@ a::-moz-selection {
 		}
 	}
 
+	#header,
 	#wrapper,
 	.main,
 	.ui-widget-content {

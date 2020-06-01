@@ -36,8 +36,8 @@ class Media {
                     this.positionLog.left[i] = s.style.left;
                 })
                 iterate((s) => {
-                    s.style.top = 'auto';
-                    s.style.left = 'auto'
+                    s.style.top = '';
+                    s.style.left = ''
                 })
             }
             $('#wrapper div').draggable('disable');
