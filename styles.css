@@ -249,7 +249,6 @@ img {
 	}
 
 	#wrapper,
-	#bottom,
 	.ui-widget-content {
 		position: relative;
 	}
@@ -274,7 +273,17 @@ img {
 
 	#deck {
 		position: fixed;
-		top: 0.5vw;
+		top: 0.5vh;
+	}
+
+	#bottom {
+		bottom: 0.5vh;
+	}
+
+	#deck,
+	#bottom {
+		height: 5vh;
+		background-color: white;
 	}
 
 	#deck a {
