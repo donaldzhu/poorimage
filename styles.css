@@ -276,7 +276,7 @@ a::-moz-selection {
 	#title h1 {
 		-webkit-text-stroke-width: 0.05vw;
 		font-size: calc(2.5vw + 50px);
-		
+		white-space: nowrap;
 	}
 
 	#wrapper {
