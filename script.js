@@ -92,7 +92,7 @@ class Media {
 
     titleBreak() {
         const title = document.getElementById('title');
-        title.innerHTML = '<h1>In Defense of <br> the Poor Image</h1>';
+        title.innerHTML = '<h1 class="first-line">In Defense of </h1><h1 class="second-line"> the Poor Image</h1>';
     }
 }
 

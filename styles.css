@@ -263,24 +263,33 @@ a::-moz-selection {
 	}
 
 	#header {
-		top: -40vh;
+		left: 0;
+		top: 10vh;
 	}
 
 	#title {
-		top: 5vw;
-		left: 5vw;
-		width: 75vw;
-		position: absolute;
+		top: 2.5vh;
+		width: 100vw;
 	}
 
 	#title h1 {
+		line-height: 1.5em;
 		-webkit-text-stroke-width: 0.05vw;
-		font-size: calc(2.5vw + 50px);
+		font-size: calc(3vw + 55px);
 		white-space: nowrap;
 	}
 
+	.first-line {
+		left: -2.5vw;
+	}
+
+	.second-line {
+		top: 1.25em;
+		right: -2.5vw;
+	}
+
 	#wrapper {
-		margin: 50vh 0 0;
+		margin: 40vh 0 0;
 		flex-direction: column;
 	}
 
@@ -304,18 +313,20 @@ a::-moz-selection {
 	}
 
 	#deck {
-		top: 0;
+		padding-left: 10vw;
+		height: 3vh;
+		top: 32.5vh;
 	}
 
 	#bottom {
+		height: 2vh;
 		bottom: 0;
+		left: 0;
+		padding-left: 2vw;
 	}
 
 	#deck,
 	#bottom {
-		left: 0;
-		padding-left: 2vw;
-		height: 3vh;
 		align-items: center;
 		padding-bottom: 0.5vh;
 	}
@@ -325,11 +336,11 @@ a::-moz-selection {
 	}
 
 	#intro-amn-wrapper {
-		top: 4vh;
+		top: 2vh;
 	}
 
 	#citation-amn-wrapper {
-		bottom: 4vh;
+		bottom: 3vh;
 	}
 
 	#intro-amn-wrapper,
@@ -362,7 +373,6 @@ a::-moz-selection {
 		border: 5px solid blue;
 	}
 
-	#deck,
 	#bottom,
 	#intro-amn-wrapper,
 	#citation-amn-wrapper,
@@ -387,15 +397,20 @@ a::-moz-selection {
 	}
 
 	#header,
+	#deck,
 	#wrapper,
 	.main,
 	.ui-widget-content {
 		position: relative;
 	}
 
+	#title,
+	#title h1 {
+		position: absolute;
+	}
+
 	#pop-up,
-	#shade,
-	#deck {
+	#shade {
 		position: fixed;
 	}
 
