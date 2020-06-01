@@ -270,12 +270,13 @@ a::-moz-selection {
 	#title {
 		top: 2.5vh;
 		width: 100vw;
+		height: 25vh;
 	}
 
 	#title h1 {
 		line-height: 1.5em;
 		-webkit-text-stroke-width: 0.05vw;
-		font-size: calc(3vw + 55px);
+		font-size: calc(3vw + 50px);
 		white-space: nowrap;
 	}
 
@@ -289,7 +290,7 @@ a::-moz-selection {
 	}
 
 	#wrapper {
-		margin: 40vh 0 0;
+		margin: 35vh 0 0;
 		flex-direction: column;
 	}
 
@@ -315,7 +316,7 @@ a::-moz-selection {
 	#deck {
 		padding-left: 10vw;
 		height: 3vh;
-		top: 32.5vh;
+		top: 27.5vh;
 	}
 
 	#bottom {
