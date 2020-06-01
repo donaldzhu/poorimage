@@ -165,7 +165,7 @@ class Spawn {
             this.create(Math.random() < 0.5 ? Screenshot : Images)
         }
         amount++;
-        if (amount >= 100) {
+        if (amount >= 50) {
             this.clear()
         }
     }
