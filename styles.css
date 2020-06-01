@@ -294,6 +294,7 @@ img {
 
 	#intro p,
 	#citation-wrapper p {
+		top: 5px;
 		height: 5vh;
 		display: inline-block;
 		margin: 0;
