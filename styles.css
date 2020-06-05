@@ -201,7 +201,6 @@ span,
 	cursor: -webkit-image-set(url(cursor/move.svg) 5x) 5 5, move;
 }
 
-#title,
 .side-wrapper {
 	pointer-events: none;
 }
