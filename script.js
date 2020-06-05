@@ -263,7 +263,7 @@ class Screenshot extends Spawn {
     }
 }
 
-const totalNumOfImg = 72;
+const totalNumOfImg = 70;
 class Images extends Spawn {
     constructor(type) {
         super(type)
