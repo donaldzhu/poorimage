@@ -263,7 +263,7 @@ class Screenshot extends Spawn {
     }
 }
 
-const totalNumOfImg = 68
+const totalNumOfImg = 65
 class Images extends Spawn {
     constructor(type) {
         super(type)
@@ -434,7 +434,7 @@ class Control {
     }
     static enable() {
         control = new Control()
-        Control.enable = function () { }
+        Control.enable = function () {}
 
     }
 }
