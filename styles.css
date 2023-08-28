@@ -220,16 +220,6 @@ a::selection {
   background-color: #ef0000;
 }
 
-p::-moz-selection,
-h1::-moz-selection,
-span::-moz-selection,
-sup::-moz-selection,
-i::-moz-selection,
-a::-moz-selection {
-  color: white;
-  background-color: #ef0000;
-}
-
 #pop-up,
 #shade {
   display: none;
@@ -428,37 +418,37 @@ a::-moz-selection {
 }
 @font-face {
   font-family: "GT-Pressura";
-  src: url("fonts/GT-Pressura/GTPressura-Bold.ttf") format("truetype");
+  src: url("assets/fonts/GT-Pressura/GTPressura-Bold.ttf") format("truetype");
   font-weight: 700, bold;
   font-style: normal;
 }
 @font-face {
   font-family: "GT-Pressura";
-  src: url("fonts/GT-Pressura/GTPressura-BoldItalic.ttf") format("truetype");
+  src: url("assets/fonts/GT-Pressura/GTPressura-BoldItalic.ttf") format("truetype");
   font-weight: 700, bold;
   font-style: italic;
 }
 @font-face {
   font-family: "GT-Pressura";
-  src: url("fonts/GT-Pressura/GTPressura.ttf") format("truetype");
+  src: url("assets/fonts/GT-Pressura/GTPressura.ttf") format("truetype");
   font-weight: 400, normal;
   font-style: normal;
 }
 @font-face {
   font-family: "GT-Pressura";
-  src: url("fonts/GT-Pressura/GTPressura-RegularItalic.ttf") format("truetype");
+  src: url("assets/fonts/GT-Pressura/GTPressura-RegularItalic.ttf") format("truetype");
   font-weight: 400, normal;
   font-style: italic;
 }
 @font-face {
   font-family: "Sang-Bleu-Republic";
-  src: url("fonts/Sang-Bleu-Republic/SangBleuRepublic-Bold.otf") format("opentype");
+  src: url("assets/fonts/Sang-Bleu-Republic/SangBleuRepublic-Bold.otf") format("opentype");
   font-weight: 700, bold;
   font-style: normal;
 }
 @font-face {
   font-family: "Sang-Bleu-Republic";
-  src: url("fonts/Sang-Bleu-Republic/SangBleuRepublic-BoldItalic.otf") format("opentype");
+  src: url("assets/fonts/Sang-Bleu-Republic/SangBleuRepublic-BoldItalic.otf") format("opentype");
   font-weight: 700, bold;
   font-style: italic;
 }

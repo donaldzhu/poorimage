@@ -1,22 +1,26 @@
 class Media {
   constructor() {
     this.threshold = () => (vw() > 478) ? 'above' : 'below'
-    this.validate = () => windowRatio() < 1 || this.threshold() == 'below'
+    this.isVertical = () => {
+      windowRatio() < 1 || this.threshold() == 'below'
+      return false
+    }
+
+    const defaultPositions = Array(6).fill(0)
     this.positionLog = {
-      top: [0, 0, 0, 0, 0, 0],
-      left: [0, 0, 0, 0, 0, 0]
+      top: [...defaultPositions],
+      left: [...defaultPositions]
     }
     this.mobile = {
       cur: null,
-      next: this.validate()
+      next: this.isVertical()
     }
   }
 
   report() {
-    if (this.validate()) {
-      if (!this.mobile.cur && this.mobile.next) {
+    if (this.isVertical()) {
+      if (!this.mobile.cur && this.mobile.next)
         this.desktop2mobile()
-      }
       $('#wrapper div').draggable('disable')
       clearInterval(spawn.interval)
     } else if (this.mobile.cur && !this.mobile.next) {
@@ -28,32 +32,28 @@ class Media {
   }
 
   desktop2mobile() {
-    iterate((s, i) => {
-      this.positionLog.top[i] = s.style.top
-      this.positionLog.left[i] = s.style.left
-    })
-    iterate((s) => {
-      s.style.top = ''
-      s.style.left = ''
+    mainForEach(({ style }, i) => {
+      this.positionLog.top[i] = style.top
+      this.positionLog.left[i] = style.left
+      style.top = ''
+      style.left = ''
     })
   }
 
   mobile2desktop() {
     clearInterval(spawn.interval)
     spawn.getTime()
-    if (!scatter.runned) {
-      scatter.onload()
-    } else {
-      iterate((s, i) => {
-        s.style.top = this.positionLog.top[i]
-        s.style.left = this.positionLog.left[i]
-      })
-    }
+    if (!scatter.runned) scatter.onload()
+    else mainForEach(({ style }, i) => {
+      style.top = this.positionLog.top[i]
+      style.left = this.positionLog.left[i]
+    })
+
     $('#wrapper div').draggable('enable')
   }
 
   popUp(func) {
-    if (this.validate()) {
+    if (this.isVertical()) {
       if (func == 'initial') {
         document.getElementById('pop-up').style.display = 'flex'
         document.getElementById('shade').style.display = 'block'
@@ -73,11 +73,10 @@ class Media {
   }
 
   sectionMaxHeight() {
-    iterate((s) => {
-      const t = s.firstElementChild.getBoundingClientRect().top
-      const b = s.lastElementChild.getBoundingClientRect().bottom
-      const mh = b - t
-      s.style.maxHeight = this.validate() ? 'none' : `${mh}px`
+    mainForEach(({ firstElementChild, lastElementChild, style }) => {
+      const { top } = firstElementChild.getBoundingClientRect()
+      const { bottom } = lastElementChild.getBoundingClientRect()
+      style.maxHeight = this.isVertical() ? 'none' : `${bottom - top}px`
     })
   }
 
