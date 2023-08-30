@@ -24,8 +24,12 @@ const randomInt = (a, b) => {
   return Math.floor(Math.random() * (args[1] - args[0]) + args[0])
 }
 
-
 const mainForEach = callback => {
+  const main = Array.from(document.querySelectorAll('.main'))
   for (let index = 0; index < main.length; index++)
     callback(main[index], index)
 }
+
+const selectDomArray = query => Array.from(document.querySelectorAll(query))
+
+const arrayify = possibleArray => Array.isArray(possibleArray) ? possibleArray : [possibleArray]

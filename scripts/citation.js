@@ -1,67 +1,54 @@
 class Citation {
   constructor() {
-    this.spanList = Array.from(document.getElementsByClassName('inline-citation'))
-    this.citationList = Array.from(document.getElementsByClassName('side-citation'))
-    this.spanSpliced = this.spanList.splice(14, 2)
-    this.citationSpliced = this.citationList.splice(14, 1)[0]
-    this.allSpan = Array.from(document.getElementsByTagName('span'))
-    this.allCitations = document.getElementById('citation-wrapper')
-    this.handlers = {
-      hover: ['mouseover', 'mouseout'],
-    }
-    this.cssStyle = {
+    this.inlineCitations = selectDomArray('.inline-citation')
+    this.sideCitations = selectDomArray('.side-citation')
+
+    this.inlineCitation15 = this.inlineCitations.splice(14, 2) // [15a, 15b]
+    this.sideCitation15 = this.sideCitations.splice(14, 1)[0] // 15
+
+    this.toggleStyles = {
       highlight: ['backgroundColor', 'yellow', ''],
-      anm: ['animation-play-state', 'paused', 'running']
+      animation: ['animation-play-state', 'paused', 'running']
     }
   }
-  initialize() {
-    for (let i = 0; i < this.spanList.length; i++) {
-      this.multiAssign([this.spanList[i], this.citationList[i]], 'hover', 'highlight')
-    }
-    this.multiAssign([...this.spanSpliced, this.citationSpliced], 'hover', 'highlight')
-    this.assign([...this.allSpan, citation.elem], citation.elem, 'hover', this.cssStyle.anm)
-    this.assign(intro.elem, intro.elem, 'hover', this.cssStyle.anm)
+
+  init() {
+    const citationWrapper = document.querySelector('#citation-wrapper')
+    const intro = document.querySelector('#intro')
+
+    for (let i = 0; i < this.inlineCitations.length; i++)
+      this.initHighlightListeners(this.inlineCitations[i], this.sideCitations[i])
+    this.initHighlightListeners(...this.inlineCitation15, this.sideCitation15)
+
+    this.initListener([...this.inlineCitations, ...this.inlineCitation15, citationWrapper], citationWrapper, this.toggleStyles.animation)
+    this.initListener(intro, intro, this.toggleStyles.animation)
   }
-  assign(attached, target, handler, ...handlerArgs) {
-    if (media.isVertical()) {
-      return
-    }
-    let evt = this.handlers[handler]
-    for (let i = 0; i < evt.length; i++) {
-      this[handler](attached, target, evt[i], ...handlerArgs)
-    }
+
+  initListener(listenedNodes, callbackTargets, ...handlerArgs) {
+    const events = ['mouseover', 'mouseout']
+    for (let i = 0; i < events.length; i++)
+      this.registerHoverListener(listenedNodes, callbackTargets, events[i], ...handlerArgs)
   }
-  hover(attached, target, evt, css, self) {
-    const cssStyle = (evt == 'mouseover') ? css[1] : css[2]
-    if (!Array.isArray(attached)) {
-      attached = [attached]
-    }
-    for (let i = 0; i < attached.length; i++) {
-      const a = attached[i]
-      a.addEventListener(evt, () => {
-        if (self) {
-          a.style[css[0]] = cssStyle
-        }
-        if (Array.isArray(target)) {
-          for (let i = 0; i < target.length; i++) {
-            target[i].style[css[0]] = cssStyle
-          }
-        } else {
-          target.style[css[0]] = cssStyle
-        }
+
+  registerHoverListener(listenedNodes, callbackTargets, event, toggleStyle) {
+    listenedNodes = arrayify(listenedNodes)
+    callbackTargets = arrayify(callbackTargets)
+    const [styleName, mouseOverStyle, mouseOutStyle] = toggleStyle
+
+    const style = event === 'mouseover' ? mouseOverStyle : mouseOutStyle
+    for (let i = 0; i < listenedNodes.length; i++)
+      listenedNodes[i].addEventListener(event, () => {
+        for (let i = 0; i < callbackTargets.length; i++)
+          callbackTargets[i].style[styleName] = style
       })
-
-    }
   }
-  multiAssign(elem, handler, ...styleNames) {
-    for (let i = 0; i < elem.length; i++) {
-      const targets = [...elem]
-      const attached = targets.splice(i, 1)[0]
-      for (let i = 0; i < styleNames.length; i++) {
-        const css = styleNames[i]
-        this.assign(attached, targets, handler, this.cssStyle[css], true)
-      }
 
-    }
+  initHighlightListeners(...highlightElemGroup) {
+    for (let i = 0; i < highlightElemGroup.length; i++)
+      this.initListener(
+        highlightElemGroup[i],
+        highlightElemGroup,
+        this.toggleStyles.highlight
+      )
   }
 }

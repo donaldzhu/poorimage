@@ -12,7 +12,8 @@
 <body>
 	<div id="header">
 		<div id="title">
-			<h1>In Defense of the Poor Image</h1>
+			<h1>In Defense of</h1>
+			<h1>the Poor Image</h1>
 		</div>
 		<div id="deck">
 			<p>
@@ -22,7 +23,7 @@
 		</div>
 	</div>
 	<div id="side">
-		<div id="intro-amn-wrapper" class="side-wrapper">
+		<div id="intro-animation-wrapper" class="side-wrapper">
 			<div id="intro" class="side">
 				<p>The poor image is a copy in motion. Its quality is bad, its resolution substandard. As it
 					accelerates, it
@@ -62,7 +63,7 @@
 					manage to decipher it.</p>
 			</div>
 		</div>
-		<div id="citation-amn-wrapper" class="side-wrapper">
+		<div id="citation-animation-wrapper" class="side-wrapper">
 			<div id="citation-wrapper" class="side citation-start">
 				<p id="citation-head">Hito Steyerl is a filmmaker and writer. She teaches New Media Art at University of
 					Arts Berlin and has recently participated in Documenta 12, Shanghai Biennial, and Rotterdam Film
@@ -379,35 +380,30 @@
 	</div>
 	<div id="bottom">
 		<p>Originally published in e-flux journal #10 - November 2009,
-			<a
-				href="https://www.e-flux.com/journal/10/61362/in-defense-of-the-poor-image/">https://www.e-flux.com/journal/10/61362/in-defense-of-the-poor-image/</a>
+			<a href="https: //www.e-flux.com/journal/10/61362/in-defense-of-the-poor-image/">
+				https://www.e-flux.com/journal/10/61362/in-defense-of-the-poor-image/</a>
 		</p>
 	</div>
-	<div id="pop-up">
-		<h1>MESSAGE</h1>
-		<p id='message'>For the best viewing experience, view this website on a desktop device/in a larger window.
-		</p>
-		<p id='confirm' onclick="media.popUp('confirm')" ontouchstart="media.popUp('confirm')">oh okay</p>
+
+	<div id="mobile-blocker">
+		<p> Please visit the site on desktop or on a larger device :(</p>
 	</div>
-	<div id='shade'></div>
-	<script src="https://code.jquery.com/jquery-1.12.4.js">
-	</script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
-	</script>
-	<script type="text/javascript" src="html2canvas.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
-	<script src="jquery.ui.touch-punch.js"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<script src="scripts/libs/jquery.ui.touch-punch.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 	<script type="text/javascript" src="data/positions.js"></script>
 	<script type="text/javascript" src="scripts/constants.js"></script>
 	<script type="text/javascript" src="scripts/utils.js"></script>
-	<script type="text/javascript" src="scripts/media.js"></script>
-	<script type="text/javascript" src="scripts/scatter.js"></script>
+	<script type="text/javascript" src="scripts/draggable.js"></script>
+	<script type="text/javascript" src="scripts/spawnFactory.js"></script>
 	<script type="text/javascript" src="scripts/spawn.js"></script>
-	<script type="text/javascript" src="scripts/sideAnimation.js"></script>
+	<script type="text/javascript" src="scripts/sideScrolls.js"></script>
 	<script type="text/javascript" src="scripts/citation.js"></script>
-	<script type="text/javascript" src="scripts/control.js"></script>
+	<script type="text/javascript" src="scripts/controls.js"></script>
+	<script type="text/javascript" src="scripts/scatter.js"></script>
+	<script type="text/javascript" src="scripts/mediaQuery.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
 </body>
 
